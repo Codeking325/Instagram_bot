@@ -70,7 +70,7 @@ class InstaBot:
             scroll_box = self.driver.find_element_by_xpath("/html/body/div[4]/div/div/div[2]")
             links = scroll_box.find_elements_by_tag_name('a')
             followers = [name.text for name in links if name.text != '']
-            with open(r'C:\Users\jonny\OneDrive\Dokumente\coding\Python\Selenium\instabot\recent_followers.txt', 'a') as f:
+            with open('recent_followers.txt', 'a') as f:
                 for item in range(repeat):
                     f.write("%s\n" % followers[item])
             sleep(2)
@@ -103,7 +103,7 @@ class InstaBot:
         scroll_box = self.driver.find_element_by_xpath("/html/body/div[4]/div/div/div[2]")
         links = scroll_box.find_elements_by_tag_name('a')
         followers = [name.text for name in links if name.text != '']
-        with open(r'C:\Users\jonny\OneDrive\Dokumente\coding\Python\Selenium\instabot\all_followers.txt', 'w') as f:
+        with open('all_followers.txt', 'w') as f:
             for item in followers:
                 f.write("%s\n" % item)
         self.driver.find_element_by_xpath("/html/body/div[4]/div/div/div[1]/div/div[2]/button/div").click()
@@ -115,7 +115,7 @@ class InstaBot:
 
     def unfollow(self):
         #get file 
-        f = open(r'C:\Users\jonny\OneDrive\Dokumente\coding\Python\Selenium\instabot\recent_followers.txt', 'r')
+        f = open('recent_followers.txt', 'r')
         to_unfollow = [i.strip() for i in f.readlines()]
         
         #find user and unfollow 
@@ -133,7 +133,7 @@ class InstaBot:
 
             sleep(random.randint(4,6))
             try:
-                button = pyautogui.locateOnScreen(r"C:\Users\jonny\OneDrive\Dokumente\coding\Python\Selenium\instabot\unfollow_button.png", confidence=0.9) #click unfollow
+                button = pyautogui.locateOnScreen('unfollow_button.png", confidence=0.9) #click unfollow
                 pyautogui.click(button)
                 sleep(3)
                 self.driver.find_element_by_xpath("/html/body/div[4]/div/div/div/div[3]/button[1]")\
